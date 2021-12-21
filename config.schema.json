@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
+  "pluginAlias": "HomebridgeHttpButton",
   "pluginType": "platform",
   "singular": true,
   "schema": {
@@ -9,7 +9,12 @@
         "title": "Name",
         "type": "string",
         "required": true,
-        "default": "Example Dynamic Platform"
+        "default": "Homebridge HTTP Button"
+      },
+      "esp_32_ip": {
+        "title": "ESP-32 IP",
+        "type": "string",
+        "required": true
       }
     }
   }

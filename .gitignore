@@ -1,3 +1,6 @@
+# IDE
+.idea
+
 # Ignore compiled code
 dist
 
