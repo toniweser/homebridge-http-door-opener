@@ -1,6 +1,6 @@
-import {Service, PlatformAccessory, CharacteristicValue, Characteristic} from 'homebridge';
+import {PlatformAccessory, Service} from 'homebridge';
 
-import { ExampleHomebridgePlatform } from './platform';
+import {ExampleHomebridgePlatform} from './platform';
 
 /**
  * Platform Accessory
