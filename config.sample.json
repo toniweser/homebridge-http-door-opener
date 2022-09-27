@@ -2,7 +2,9 @@
   "platforms": [
     {
       "platform": "HomebridgeHttpButton",
-      "name": "HomebridgeHttpButton"
+      "name": "HomebridgeHttpButton",
+      "request_ip": "192.168.0.1",
+      "path": "my-path"
     }
   ]
 }

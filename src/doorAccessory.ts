@@ -1,4 +1,4 @@
-import {PlatformAccessory, Service} from 'homebridge';
+import {PlatformAccessory, PlatformConfig, Service} from 'homebridge';
 
 import {ExampleHomebridgePlatform} from './platform';
 import axios from 'axios';
@@ -10,12 +10,13 @@ import axios from 'axios';
  */
 export class DoorAccessory {
   private service: Service;
+  private platformConfig: PlatformConfig;
 
   constructor(
     private readonly platform: ExampleHomebridgePlatform,
     private readonly accessory: PlatformAccessory,
   ) {
-
+    this.platformConfig = this.platform.config;
     // set accessory information
     this.accessory.getService(this.platform.Service.AccessoryInformation)!
       .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Default-Manufacturer')
@@ -77,7 +78,17 @@ export class DoorAccessory {
       // Open door
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(0);
       this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
-      await axios.get('http://192.168.0.3/open-door');
+
+      const requestIpAndPath = `http://${this.platform.config.request_ip}/${this.platform.config.path}`;
+      this.platform.log.info(`Sending request to ${requestIpAndPath}...`);
+      try {
+        const response = await axios.get(requestIpAndPath);
+        if (response.status === 200) {
+          this.platform.log.info('Request was successful!');
+        }
+      } catch (e) {
+        this.platform.log.error(`Error while trying to send GET request to ${requestIpAndPath}`, e);
+      }
 
       setTimeout(() => {
         this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
@@ -89,5 +100,4 @@ export class DoorAccessory {
       this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(0);
     }
   }
-
 }

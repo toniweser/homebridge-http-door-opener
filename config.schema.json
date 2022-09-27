@@ -11,8 +11,15 @@
         "required": true,
         "default": "Homebridge HTTP Button"
       },
-      "esp_32_ip": {
-        "title": "ESP-32 IP",
+      "request_ip": {
+        "title": "Request IP",
+        "description": "The IP of to which the request will be sent (e.g. '192.168.0.2')",
+        "type": "string",
+        "required": true
+      },
+      "path": {
+        "title": "Path",
+        "description": "The path of the request (e.g. 'my-path'). Example: If the IP is set to '192.168.0.1' and the path is set to 'my-path', the request will be sent to 'http://192.168.0.1/my-path'",
         "type": "string",
         "required": true
       }
