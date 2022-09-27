@@ -1,6 +1,7 @@
 import {PlatformAccessory, Service} from 'homebridge';
 
 import {ExampleHomebridgePlatform} from './platform';
+import axios from 'axios';
 
 /**
  * Platform Accessory
@@ -9,8 +10,6 @@ import {ExampleHomebridgePlatform} from './platform';
  */
 export class DoorAccessory {
   private service: Service;
-
-  private doorStateLocked = this.platform.Characteristic.LockTargetState.SECURED;
 
   constructor(
     private readonly platform: ExampleHomebridgePlatform,
@@ -78,6 +77,7 @@ export class DoorAccessory {
       // Open door
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(0);
       this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
+      await axios.get('http://192.168.0.3/open-door');
 
       setTimeout(() => {
         this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
