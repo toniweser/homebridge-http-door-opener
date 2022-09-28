@@ -3,7 +3,7 @@
   "displayName": "HTTP door opener",
   "name": "homebridge-http-button",
   "version": "1.0.2",
-  "description": "A small plugin to open the front door of an apartment building using an ESP-32.",
+  "description": "A small plugin to open the front door of an apartment building using an ESP32",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
