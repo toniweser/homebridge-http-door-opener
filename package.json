@@ -1,7 +1,7 @@
 {
   "private": false,
   "displayName": "HTTP door opener",
-  "name": "http-door-opener",
+  "name": "homebridge-http-button",
   "version": "1.0.0",
   "description": "A small plugin to open the front door of an apartment building using an ESP-32.",
   "license": "Apache-2.0",
@@ -24,7 +24,7 @@
     "prepublishOnly": "npm run lint && npm run build"
   },
   "keywords": [
-    "homebridge-plugin"
+    "homebridge-plugin", "door-opener", "ESP-32", "door", "HTTP"
   ],
   "dependencies": {
     "axios": "^0.27.2"
