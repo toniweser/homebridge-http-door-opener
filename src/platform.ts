@@ -8,6 +8,7 @@ import {
   Service,
 } from 'homebridge';
 
+
 import {PLATFORM_NAME, PLUGIN_NAME} from './settings';
 import {DoorAccessory} from './doorAccessory';
 
@@ -28,7 +29,7 @@ export class ExampleHomebridgePlatform implements DynamicPlatformPlugin {
     public readonly config: PlatformConfig,
     public readonly api: API,
   ) {
-    this.log.debug('Finished initializing platform:', this.config.name);
+    this.log.debug('Finished initializing platform:', PLATFORM_NAME);
     this.api.on('didFinishLaunching', () => {
       log.debug('Executed didFinishLaunching callback');
       this.discoverDevices();
