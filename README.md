@@ -12,6 +12,12 @@ ESP32.
 Apartment buildings often have an intercom system to open the main entrance door. To get rid of all the keys, this
 plugin helps to open the door via Apple Home or even with the help of Siri.
 
+# Install
+
+```shell
+npm i homebridge-http-button
+```
+
 # ESP32
 
 When opening the door, an HTTP request is sent to the ESP32, which bypasses a switch on the intercom with the help of
