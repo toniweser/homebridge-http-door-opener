@@ -17,34 +17,23 @@ export class DoorAccessory {
     private readonly accessory: PlatformAccessory,
   ) {
     this.platformConfig = this.platform.config;
-    // set accessory information
+    // Set accessory information
     this.accessory.getService(this.platform.Service.AccessoryInformation)!
       .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Default-Manufacturer')
       .setCharacteristic(this.platform.Characteristic.Model, 'Default-Model')
       .setCharacteristic(this.platform.Characteristic.SerialNumber, 'Default-Serial');
 
-
-    // get the LightBulb service if it exists, otherwise create a new LightBulb service
-    // you can create multiple services for each accessory
     this.service =
         this.accessory.getService(this.platform.Service.LockMechanism) ||
         this.accessory.addService(this.platform.Service.LockMechanism);
 
-    // set the service name, this is what is displayed as the default name on the Home app
-    // in this example we are using the name we stored in the `accessory.context` in the `discoverDevices` method.
     this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.exampleDisplayName);
 
-    // each service must implement at-minimum the "required characteristics" for the given service type
-    // see https://developers.homebridge.io/#/service/Lightbulb
-
-    // register handlers for the On/Off Characteristic
-
     this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState)
-      .onGet(this.handleLockCurrentStateGet.bind(this)); // GET - bind to the `getOn` method below;
+      .onGet(this.handleLockCurrentStateGet.bind(this));
 
-    // register handlers for the On/Off Characteristic
     this.service.getCharacteristic(this.platform.Characteristic.LockTargetState)
-      .onGet(this.handleLockTargetStateGet.bind(this)) // GET - bind to the `getOn` method below
+      .onGet(this.handleLockTargetStateGet.bind(this))
       .onSet(this.handleLockTargetStateSet.bind(this));
   }
 
@@ -52,8 +41,6 @@ export class DoorAccessory {
    * Handle requests to get the current value of the "Lock Current State" characteristic
    */
   async handleLockCurrentStateGet() {
-    this.platform.log.debug('Triggered GET LockCurrentState');
-    this.platform.log.debug(JSON.stringify(this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).value));
     return 1;
   }
 
@@ -62,9 +49,6 @@ export class DoorAccessory {
    * Handle requests to get the current value of the "Lock Target State" characteristic
    */
   async handleLockTargetStateGet() {
-    this.platform.log.debug('Triggered GET LockTargetState');
-    this.platform.log.debug(JSON.stringify(this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).value));
-
     return 1;
   }
 
@@ -79,6 +63,7 @@ export class DoorAccessory {
       this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(0);
       this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
 
+      // Call HTTP endpoint for opening door
       const requestIpAndPath = `http://${this.platform.config.request_ip}/${this.platform.config.path}`;
       this.platform.log.info(`Sending request to ${requestIpAndPath}...`);
       try {
@@ -91,6 +76,7 @@ export class DoorAccessory {
       }
 
       setTimeout(() => {
+        // After door has opened successfully, wait 2 seconds to close it again
         this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).updateValue(1);
         this.service.getCharacteristic(this.platform.Characteristic.LockTargetState).updateValue(1);
       }, 2000);

@@ -20,7 +20,7 @@ export class ExampleHomebridgePlatform implements DynamicPlatformPlugin {
   public readonly Service: typeof Service = this.api.hap.Service;
   public readonly Characteristic: typeof Characteristic = this.api.hap.Characteristic;
 
-  // this is used to track restored cached accessories
+  // Used to track restored cached accessories
   public readonly accessories: PlatformAccessory[] = [];
 
   constructor(
@@ -36,13 +36,13 @@ export class ExampleHomebridgePlatform implements DynamicPlatformPlugin {
   }
 
   /**
-   * This function is inoked when homebridge restores cached accessories from disk at startup.
+   * This function is invoked when homebridge restores cached accessories from disk at startup.
    * It should be used to setup event handlers for characteristics and update respective values.
    */
   configureAccessory(accessory: PlatformAccessory) {
     this.log.info('Loading accessory from cache:', accessory.displayName);
 
-    // add the restored accessory to the accessories cache so we can track if it has already been registered
+    // Add the restored accessory to the accessories cache so we can track if it has already been registered
     this.accessories.push(accessory);
   }
 
