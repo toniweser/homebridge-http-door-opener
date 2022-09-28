@@ -6,4 +6,4 @@ export const PLATFORM_NAME = 'HomebridgeHttpButton';
 /**
  * This must match the name of your plugin as defined the package.json
  */
-export const PLUGIN_NAME = 'homebridge-http-button';
+export const PLUGIN_NAME = 'http-door-opener';

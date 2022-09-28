@@ -7,7 +7,7 @@
     "properties": {
       "request_ip": {
         "title": "Request IP",
-        "description": "The IP of to which the request will be sent (e.g. '192.168.0.2')",
+        "description": "The IP (e.g. of your ESP-32) to which the request will be sent (e.g. '192.168.0.2')",
         "type": "string",
         "required": true
       },

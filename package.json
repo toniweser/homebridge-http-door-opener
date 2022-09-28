@@ -1,16 +1,16 @@
 {
   "private": false,
-  "displayName": "HTTP Button",
-  "name": "homebridge-http-button",
+  "displayName": "HTTP door opener",
+  "name": "http-door-opener",
   "version": "1.0.0",
-  "description": "A short description about what your plugin does.",
+  "description": "A small plugin to open the front door of an apartment building using an ESP-32.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/toniweser/homebridge-http-button.git"
+    "url": "git://github.com/toniweser/homebridge-http-door-opener.git"
   },
   "bugs": {
-    "url": "https://github.com/toniweser/homebridge-http-button/issues"
+    "url": "https://github.com/toniweser/homebridge-http-door-opener/issues"
   },
   "engines": {
     "node": ">=14.18.1",
