@@ -1,9 +1,3 @@
-<p align="center">
-
-<img src="https://github.com/homebridge/branding/raw/master/logos/homebridge-wordmark-logo-vertical.png" width="150">
-
-</p>
-
 # HTTP door opener - Homebridge Plugin
 
 This is a small [Homebridge](https://homebridge.io/) plugin to open the front door of an apartment building using an
