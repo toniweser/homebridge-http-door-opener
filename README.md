@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://homebridge.io/">
+    <img src="assets/homebridge-wordmark-logo-vertical.png" alt="Homebridge" width="200" />
+  </a>
+</p>
+
 # HTTP door opener - Homebridge Plugin
 
 This is a small [Homebridge](https://homebridge.io/) plugin to open the front door of an apartment building using an
@@ -19,7 +25,9 @@ a relay and finally opens the door. A short time later, the switch is automatica
 
 The IP of the ESP32 and the path are configurable in the plugin settings
 
-The wiring diagram of the ESP 32 (might be helpful) can be accessed [here](https://bit.ly/3Cj8KuG).
+The wiring diagram of the ESP32 (might be helpful):
+
+![Wiring diagram](assets/wiring-diagram.png)
 
 ## Security aspects
 
