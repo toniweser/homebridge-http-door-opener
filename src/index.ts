@@ -1,7 +1,6 @@
-import { API } from 'homebridge';
-
-import { PLATFORM_NAME } from './settings';
+import type { API } from 'homebridge';
 import { ExampleHomebridgePlatform } from './platform';
+import { PLATFORM_NAME } from './settings';
 
 /**
  * Registers the platform with Homebridge

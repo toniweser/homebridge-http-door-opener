@@ -1,7 +1,6 @@
-import {PlatformAccessory, PlatformConfig, Service} from 'homebridge';
-
-import {ExampleHomebridgePlatform} from './platform';
 import axios from 'axios';
+import type { PlatformAccessory, Service } from 'homebridge';
+import type { ExampleHomebridgePlatform } from './platform';
 
 /**
  * Platform Accessory
@@ -10,29 +9,27 @@ import axios from 'axios';
  */
 export class DoorAccessory {
   private service: Service;
-  private platformConfig: PlatformConfig;
 
   constructor(
     private readonly platform: ExampleHomebridgePlatform,
     private readonly accessory: PlatformAccessory,
   ) {
-    this.platformConfig = this.platform.config;
     // Set accessory information
-    this.accessory.getService(this.platform.Service.AccessoryInformation)!
+    this.accessory
+      .getService(this.platform.Service.AccessoryInformation)!
       .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Default-Manufacturer')
       .setCharacteristic(this.platform.Characteristic.Model, 'Default-Model')
       .setCharacteristic(this.platform.Characteristic.SerialNumber, 'Default-Serial');
 
     this.service =
-        this.accessory.getService(this.platform.Service.LockMechanism) ||
-        this.accessory.addService(this.platform.Service.LockMechanism);
+      this.accessory.getService(this.platform.Service.LockMechanism) || this.accessory.addService(this.platform.Service.LockMechanism);
 
     this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.exampleDisplayName);
 
-    this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState)
-      .onGet(this.handleLockCurrentStateGet.bind(this));
+    this.service.getCharacteristic(this.platform.Characteristic.LockCurrentState).onGet(this.handleLockCurrentStateGet.bind(this));
 
-    this.service.getCharacteristic(this.platform.Characteristic.LockTargetState)
+    this.service
+      .getCharacteristic(this.platform.Characteristic.LockTargetState)
       .onGet(this.handleLockTargetStateGet.bind(this))
       .onSet(this.handleLockTargetStateSet.bind(this));
   }
@@ -43,7 +40,6 @@ export class DoorAccessory {
   async handleLockCurrentStateGet() {
     return 1;
   }
-
 
   /**
    * Handle requests to get the current value of the "Lock Target State" characteristic

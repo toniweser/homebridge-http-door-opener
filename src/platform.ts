@@ -1,16 +1,6 @@
-import {
-  API,
-  Characteristic,
-  DynamicPlatformPlugin,
-  Logger,
-  PlatformAccessory,
-  PlatformConfig,
-  Service,
-} from 'homebridge';
-
-
-import {PLATFORM_NAME, PLUGIN_NAME} from './settings';
-import {DoorAccessory} from './doorAccessory';
+import type { API, Characteristic, DynamicPlatformPlugin, Logger, PlatformAccessory, PlatformConfig, Service } from 'homebridge';
+import { DoorAccessory } from './doorAccessory';
+import { PLATFORM_NAME, PLUGIN_NAME } from './settings';
 
 /**
  * HomebridgePlatform
@@ -61,7 +51,7 @@ export class ExampleHomebridgePlatform implements DynamicPlatformPlugin {
     };
 
     const uuid = this.api.hap.uuid.generate(doorDeviceTemplate.uuid);
-    const existingDoorAccessory = this.accessories.find(accessory => accessory.UUID === uuid);
+    const existingDoorAccessory = this.accessories.find((accessory) => accessory.UUID === uuid);
 
     if (existingDoorAccessory) {
       this.log.info('Restoring existing accessory from cache:', existingDoorAccessory.displayName);
