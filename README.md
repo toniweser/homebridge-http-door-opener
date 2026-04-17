@@ -27,7 +27,9 @@ The IP of the ESP32 and the path are configurable in the plugin settings
 
 The wiring diagram of the ESP32 (might be helpful):
 
-![Wiring diagram](assets/wiring-diagram.png)
+<p align="center">
+  <img src="assets/wiring-diagram.png" alt="Wiring diagram" width="400" />
+</p>
 
 ## Security aspects
 
